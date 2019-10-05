@@ -15,21 +15,25 @@
 
     <!-- css -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
   <body>
     <header>
-      <h1>Oconee County Fire Rescue</h1>
+      <h1><img src="Firelogo.png" alt="firelogo" height="70px">Oconee County Fire Rescue<img src="Firelogo.png" alt="firelogo" height="70px"></h1>
     </header>
-    <nav class="navbar navbar-dark bg-dark"> <!--taken from bootstrap-->
-      <ul class="nav navbar-nav">
+    <nav class="navbar navbar-expand-lg"> <!--taken from bootstrap-->
+      <ul class="nav navbar-nav goldbg">
               <li><a class="black" href="index.html">Home</a></li>
               <li><a class="black" href="about.html">About</a></li>
               <li><a class="black" href="reports.html">Reports</a></li>
       </ul>
     </nav>
 
+
+
     <!-- content goes here -->
+    <div id="ocfrPersonApp">
         <table class="table table-sm table-hover">
           <thead>
             <tr>
@@ -42,21 +46,87 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="p in patients" @click="handleRowClick(p)">
-              <td>{{ p.patientGuid }}</td>
+            <tr v-for="p in persons" @click="handleRowClick(p)">
+              <td>{{ p.personId }}</td>
               <td>{{ p.firstName }}</td>
               <td>{{ p.lastName }}</td>
-              <td>{{ p.dob }}</td>
-              <td>{{ p.sexAtBirth }}</td>
-              <td></td>
+              <td>{{ p.position }}</td>
+              <td>{{ p.gender }}</td>
+              <td>{{ p.address }}</td>
+              <td>{{ p.workPhone }}</td>
+              <td>{{ p.mobilePhone }}</td>
+              <td>{{ p.radioNumber }}</td>
+              <td>{{ p.stationNumber }}</td>
+              <td>{{ p.certification }}</td>
             </tr>
           </tbody>
         </table>
+      </div>
+      <br>
+      <h2>Add Person</h2>
+        <div id="ocfrApp">
+          <noscript>This page REQUIRES Javascript</noscript>
+          <form @submit.prevent="handleSubmit">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" id="ocfrFirstName" placeholder="First Name" v-model="patient.firstName" readonly>
+              </div>
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" id="ocfrLastName" placeholder="Last Name" v-model="patient.lastName" readonly>
+              </div>
+            </div>
 
-      <form>
+            <div class="row">
+              <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="ocfrPosition" placeholder="Position" v-model="patient.dob" readonly>
+              </div>
+              <div class="col"></div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control" id="ocfrSex" placeholder="M|F" v-model="patient.sexAtBirth" readonly>
+              </div>
+            </div>
 
-      </form>
+            <div class="row">
+              <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="ocfrAddress" placeholder="Address" v-model="patient.dob" readonly>
+              </div>
+              <div class="col"></div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control" id="ocfrWorkPhone" placeholder="Work Phone" v-model="patient.sexAtBirth" readonly>
+              </div>
+            </div>
 
+            <div class="row">
+              <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="ocfrMobilePhone" placeholder="Mobile Phone" v-model="patient.dob" readonly>
+              </div>
+              <div class="col"></div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control" id="ocfrRadioNumber" placeholder="Radio Number" v-model="patient.sexAtBirth" readonly>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="ocfrStationNumber" placeholder="Station Number" v-model="patient.dob" readonly>
+              </div>
+              <div class="col"></div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control" id="ocfrCert" placeholder="Certification" v-model="patient.sexAtBirth" readonly>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-warning">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/ocfrApp.js"></script>
   </body>
 
   <footer></footer>
