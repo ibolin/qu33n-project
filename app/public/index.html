@@ -25,7 +25,7 @@
     <nav class="navbar navbar-expand-lg"> <!--taken from bootstrap-->
       <ul class="nav navbar-nav goldbg">
               <li><a class="black" href="index.html">Home</a></li>
-              <li><a class="black" href="about.html">About</a></li>
+              <li><a class="black" href="certificate.html">Certificate</a></li>
               <li><a class="black" href="reports.html">Reports</a></li>
       </ul>
     </nav>
@@ -37,8 +37,14 @@
         <table class="table table-sm table-hover">
           <thead>
             <tr>
+              <th>ID</th>
               <th>First</th>
               <th>Last</th>
+              <th>Position</th>
+              <th>Gender</th>
+              <th>Address</th>
+              <th>Work Phone</th>
+              <th>Mobile Phone</th>
               <th>Radio Number</th>
               <th>Station Number</th>
               <th>Active?</th>
@@ -57,6 +63,7 @@
               <td>{{ p.mobilePhone }}</td>
               <td>{{ p.radioNumber }}</td>
               <td>{{ p.stationNumber }}</td>
+              <td>{{ p.status}}</td>
               <td>{{ p.certification }}</td>
             </tr>
           </tbody>
