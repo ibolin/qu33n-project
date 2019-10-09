@@ -8,15 +8,13 @@ CREATE TABLE person (
     firstName VARCHAR (60),
     lastName VARCHAR (60),
     position VARCHAR (60),
+    station VARCHAR (60),
     gender VARCHAR (60),
     address VARCHAR (60),
 	workPhone VARCHAR (17) DEFAULT NULL,
     mobilePhone VARCHAR (17) DEFAULT NULL,
     radioNumber VARCHAR (60) NOT NULL,
     isActive BOOL
-);
-CREATE TABLE station (
-    stationNumber INTEGER NOT NULL PRIMARY KEY
 );
 CREATE TABLE personCert (
 	personId VARCHAR(60),
@@ -27,21 +25,13 @@ CREATE TABLE personCert (
     FOREIGN KEY (personId) REFERENCES person(personId),
     FOREIGN KEY (certId) REFERENCES certification(certId)
 );
-CREATE TABLE personStation (
-	personId VARCHAR (60),
-    stationNumber INTEGER NOT NULL,
-    PRIMARY KEY (personId, stationNumber),
-    FOREIGN KEY (personId) REFERENCES person(personId),
-    FOREIGN KEY (stationNumber) REFERENCES station(stationNumber)
-);
 
-
-INSERT INTO person (personID, firstName, lastName, position, gender, address, workPhone, mobilePhone, radioNumber, isActive)
-	VALUES("1", "Kathryn", "Pryde", "Female", "Chief", "1123 Xavier School Drive, Wtkinsville, GA 30677", "707-555-1234", "707-555-2345", "A-1", "1");
-INSERT INTO person (personID, firstName, lastName, position, gender, address, workPhone, mobilePhone, radioNumber, isActive)
-	VALUES("2", "Piotr", "Rasputin", "Male", NULL, "A31 Mother Russia Road, Seattle, WA 98133", NULL, "206-555-9876", "841", "1");
-INSERT INTO person (personID, firstName, lastName, position, gender, address, workPhone, mobilePhone, radioNumber, isActive)
-	VALUES("3", "Warren", "Worthington III", "Male", NULL, "1140 Experiment Station Rd, Watkinsville, GA", "(706) 555-3945", NULL, "122", "1");
+INSERT INTO person (personID, firstName, lastName, position, station, gender, address, workPhone, mobilePhone, radioNumber, isActive)
+	VALUES("1", "Kathryn", "Pryde", "Chief", "All",  "Female", "1123 Xavier School Drive, Wtkinsville, GA 30677", "707-555-1234", "707-555-2345", "A-1", "1");
+INSERT INTO person (personID, firstName, lastName, position, station, gender, address, workPhone, mobilePhone, radioNumber, isActive)
+	VALUES("2", "Piotr", "Rasputin", NULL, "8", "Male", "A31 Mother Russia Road, Seattle, WA 98133", NULL, "206-555-9876", "841", "1");
+INSERT INTO person (personID, firstName, lastName, position, station, gender, address, workPhone, mobilePhone, radioNumber, isActive)
+	VALUES("3", "Warren", "Worthington III", NULL, "1", "Male", "1140 Experiment Station Rd, Watkinsville, GA", "(706) 555-3945", NULL, "122", "1");
 
 INSERT INTO certification (certId, agency, certType)
 	VALUES("A", "Fire Dept", "Firefighter II");
@@ -66,11 +56,6 @@ INSERT INTO certification (certId, agency, certType)
 INSERT INTO certification (certId, agency, certType)
 	VALUES("K", "CPR for Healthcare Providers/American Heart Association", "CPR");
 
-INSERT INTO station (stationNumber)
-	VALUES(1);
-INSERT INTO station (stationNumber)
-	VALUES(8);
-
 INSERT INTO personCert (personId, certId, renewDate, expireDate)
 	VALUES ("1", "A", "2018-8-01", "2020-8-01");
 INSERT INTO personCert (personId, certId, renewDate, expireDate)
@@ -93,12 +78,3 @@ INSERT INTO personCert (personId, certId, renewDate, expireDate)
 	VALUES ("3", "F", NULL, "2019-10-01");
 INSERT INTO personCert (personId, certId, renewDate, expireDate)
 	VALUES ("3", "H", NULL, "2020-8-01");
-
-INSERT INTO personStation (personId, stationNumber)
-	VALUES ("1", "1");
-INSERT INTO personStation (personId, stationNumber)
-	VALUES ("1", "8");
-INSERT INTO personStation (personId, stationNumber)
-	VALUES ("2", "8");
-INSERT INTO personStation (personId, stationNumber)
-	VALUES ("3", "1");

@@ -41,6 +41,7 @@
               <th>First</th>
               <th>Last</th>
               <th>Position</th>
+              <th>Station</th>
               <th>Gender</th>
               <th>Address</th>
               <th>Work Phone</th>
@@ -57,13 +58,13 @@
               <td>{{ p.firstName }}</td>
               <td>{{ p.lastName }}</td>
               <td>{{ p.position }}</td>
+              <td>{{ p.station }}</td>
               <td>{{ p.gender }}</td>
               <td>{{ p.address }}</td>
               <td>{{ p.workPhone }}</td>
               <td>{{ p.mobilePhone }}</td>
               <td>{{ p.radioNumber }}</td>
-              <td>{{ p.stationNumber }}</td>
-              <td>{{ p.status}}</td>
+              <td>{{ p.isActive}}</td>
               <td>{{ p.certification }}</td>
             </tr>
           </tbody>
@@ -76,50 +77,50 @@
           <form @submit.prevent="handleSubmit">
             <div class="row">
               <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="ocfrFirstName" placeholder="First Name" v-model="patient.firstName" readonly>
+                <input type="text" class="form-control" id="ocfrFirstName" placeholder="First Name" v-model="person.firstName">
               </div>
               <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="ocfrLastName" placeholder="Last Name" v-model="patient.lastName" readonly>
+                <input type="text" class="form-control" id="ocfrLastName" placeholder="Last Name" v-model="person.lastName">
               </div>
             </div>
 
             <div class="row">
               <div class="form-group col-md-4">
-                <input type="text" class="form-control" id="ocfrPosition" placeholder="Position" v-model="patient.dob" readonly>
+                <input type="text" class="form-control" id="ocfrPosition" placeholder="Position" v-model="person.position">
               </div>
               <div class="col"></div>
               <div class="form-group col-md-2">
-                <input type="text" class="form-control" id="ocfrSex" placeholder="M|F" v-model="patient.sexAtBirth" readonly>
+                <input type="text" class="form-control" id="ocfrSex" placeholder="M|F" v-model="person.gender">
               </div>
             </div>
 
             <div class="row">
               <div class="form-group col-md-4">
-                <input type="text" class="form-control" id="ocfrAddress" placeholder="Address" v-model="patient.dob" readonly>
+                <input type="text" class="form-control" id="ocfrAddress" placeholder="Address" v-model="person.address">
               </div>
               <div class="col"></div>
               <div class="form-group col-md-2">
-                <input type="text" class="form-control" id="ocfrWorkPhone" placeholder="Work Phone" v-model="patient.sexAtBirth" readonly>
+                <input type="text" class="form-control" id="ocfrWorkPhone" placeholder="Work Phone" v-model="person.workPhone">
               </div>
             </div>
 
             <div class="row">
               <div class="form-group col-md-4">
-                <input type="text" class="form-control" id="ocfrMobilePhone" placeholder="Mobile Phone" v-model="patient.dob" readonly>
+                <input type="text" class="form-control" id="ocfrMobilePhone" placeholder="Mobile Phone" v-model="person.mobilePhone">
               </div>
               <div class="col"></div>
               <div class="form-group col-md-2">
-                <input type="text" class="form-control" id="ocfrRadioNumber" placeholder="Radio Number" v-model="patient.sexAtBirth" readonly>
+                <input type="text" class="form-control" id="ocfrRadioNumber" placeholder="Radio Number" v-model="person.radioNumber">
               </div>
             </div>
 
             <div class="row">
               <div class="form-group col-md-4">
-                <input type="text" class="form-control" id="ocfrStationNumber" placeholder="Station Number" v-model="patient.dob" readonly>
+                <input type="text" class="form-control" id="ocfrStationNumber" placeholder="Station Number" v-model="person.stationNumber">
               </div>
               <div class="col"></div>
               <div class="form-group col-md-2">
-                <input type="text" class="form-control" id="ocfrCert" placeholder="Certification" v-model="patient.sexAtBirth" readonly>
+                <input type="text" class="form-control" id="ocfrCert" placeholder="Certification" v-model="person.certId">
               </div>
             </div>
 
