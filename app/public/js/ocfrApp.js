@@ -1,27 +1,11 @@
-// var ocfrApp = new Vue ({
-//   el: '#ocfrPersonApp',
-//   data: {
-//     persons: []
-//     // recordPerson: {}
-//   },
-//
-//   methods: {
-//     fetchPeople() {
-//       fetch('dummy.php')
-//       .then(response => response.json())
-//       .then(json => { ocfrApp.persons = json })
-//     }
-//     },
-//   created(){
-//     this.fetchPeople();
-//   }
-// });
-
 var ocfrApp = new Vue({
   el: '#ocfrPersonApp',
   data: {
     persons: [],
-    recordPerson: {}
+    recordPerson: {},
+    filter: {
+      station: ''
+    }
   },
   methods: {
     fetchPeople() {
@@ -38,16 +22,16 @@ var ocfrApp = new Vue({
         }
       })
       .then( response => response.json() )
-      .then( json => {ocfrApp.persons.push = json[0]})
+      .then( json => {ocfrApp.persons.push ( json[0])})
       .catch( err=>{
         console.error('RECORD POST ERROR:');
         console.error(err);
       });
-      this.persons.push( this.recordPerson );
       this.handleReset();
     },
     handleReset() {
       this.recordPerson = {
+        personId:'',
         firstName: '',
         lastName: '',
         position: '',
@@ -57,10 +41,29 @@ var ocfrApp = new Vue({
         workPhone:'',
         mobilePhone:'',
         radioNumber:'',
-        stationNumber:'',
-        isActive: '',
-        certification:''
+        isActive: ''
+        // certification:''
       }
+    },
+    handleDelete(personId) {
+      fetch('api/records/delete.php', {
+        method:'POST',
+        body: JSON.stringify({"personId":personId}),
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        }
+      })
+      .then( function(response) {
+        ocfrApp.persons = ocfrApp.persons.filter(function(el) {return el.personId != personId}
+      );
+      })
+      // .then( response => response.json() )
+      // .then( json => {ocfrApp.persons.push ( json[0])})
+      .catch( err=>{
+        console.error('RECORD POST ERROR:');
+        console.error(err);
+      });
+      this.handleReset();
     },
     // handleRowClick(person) {
     //   patientTriageApp.patient = patient;

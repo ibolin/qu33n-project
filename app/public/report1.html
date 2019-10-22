@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Expired Certifications</title>
+
+    <!-- Bootstrap -->
+    <!--Compiled and minified CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!--jQuery CDN-->
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+    <!--Compiled and minified JavaScript-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+
+  <body>
+    <header>
+      <h1><img src="Firelogo.png" alt="firelogo" height="70px">Oconee County Fire Rescue<img src="Firelogo.png" alt="firelogo" height="70px"></h1>
+    </header>
+    <nav class="navbar navbar-expand-lg"> <!--taken from bootstrap-->
+      <ul class="nav navbar-nav goldbg">
+              <li><a class="black" href="index.html">Home</a></li>
+              <li><a class="black" href="certificate.html">Certificate</a></li>
+              <li><a class="black" href="reports.html">Reports</a></li>
+      </ul>
+    </nav>
+
+    <h2>Expired Certificates</h2>
+    <div class="container" id="report1">
+      <div class="row">
+        <div id="mainContent" class="col-md">
+          <div >
+            <div class="filter">
+              <select v-model="filter.certType">
+                <option value="">(all)</option>
+                <option>CPR</option>
+                <option>HAZMAT</option>
+                <option>Firefighter I</option>
+                <option>POST</option>
+                <option>Paramedic</option>
+                <option>Due Regard</option>
+                <option>EMT-Adv</option>
+                <option>Firefighter II</option>
+                <option>Extrication</option>
+              </select>
+            </div>
+            <table id = "report" class="table table-sm table-hover">
+              <thead>
+                <tr>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Certification</th>
+                  <th>Expiration Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="r in reports" @click="handleRowClick(r)" v-if="filter.certType=='' || r.certType==filter.certType">
+                  <td>{{ r.firstName }}</td>
+                  <td>{{ r.lastName }}</td>
+                  <td>{{ r.certType }}</td>
+                  <td>{{ r.expireDate}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/report.js"></script>
+    <script src='js/tablesort.min.js'></script>
+    <script>
+      new Tablesort(document.getElementById('report'));
+    </script>
+    </body>
+
+</html>

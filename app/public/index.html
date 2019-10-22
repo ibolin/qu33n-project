@@ -30,112 +30,132 @@
       </ul>
     </nav>
 
-
-
     <!-- content goes here -->
-    <div id="ocfrPersonApp">
-        <table class="table table-sm table-hover">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>First</th>
-              <th>Last</th>
-              <th>Position</th>
-              <th>Station</th>
-              <th>Gender</th>
-              <th>Address</th>
-              <th>Work Phone</th>
-              <th>Mobile Phone</th>
-              <th>Radio Number</th>
-              <th>Station Number</th>
-              <th>Active?</th>
-              <th>Certification</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="p in persons" @click="handleRowClick(p)">
-              <td>{{ p.personId }}</td>
-              <td>{{ p.firstName }}</td>
-              <td>{{ p.lastName }}</td>
-              <td>{{ p.position }}</td>
-              <td>{{ p.station }}</td>
-              <td>{{ p.gender }}</td>
-              <td>{{ p.address }}</td>
-              <td>{{ p.workPhone }}</td>
-              <td>{{ p.mobilePhone }}</td>
-              <td>{{ p.radioNumber }}</td>
-              <td>{{ p.isActive}}</td>
-              <td>{{ p.certification }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="container" id="ocfrPersonApp">
+      <div class="row">
+      <div id="mainContent" class="col-md">
+        <div >
+            <table class="table table-sm table-hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>First</th>
+                  <th>Last</th>
+                  <th>Position</th>
+                  <th>Station</th>
+                  <th>Gender</th>
+                  <th>Address</th>
+                  <th>Work Phone</th>
+                  <th>Mobile Phone</th>
+                  <th>Radio Number</th>
+                  <th>Delete</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="p in persons" @click="handleRowClick(p)">
+                  <td>{{ p.personId }}</td>
+                  <td>{{ p.firstName }}</td>
+                  <td>{{ p.lastName }}</td>
+                  <td>{{ p.position }}</td>
+                  <td>{{ p.station }}</td>
+                  <td>{{ p.gender }}</td>
+                  <td>{{ p.address }}</td>
+                  <td>{{ p.workPhone }}</td>
+                  <td>{{ p.mobilePhone }}</td>
+                  <td>{{ p.radioNumber }}</td>
+                  <td>
+                    <form><input type="button" class="btn btn-primary" value="Delete" @click='handleDelete(p.personId)'></form>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
       <br>
       <h2>Add Person</h2>
-        <div id="ocfrApp">
-          <noscript>This page REQUIRES Javascript</noscript>
+        <div>
+          <!-- <noscript>This page REQUIRES Javascript</noscript> -->
           <form @submit.prevent="handleSubmit">
-            <div class="row">
-              <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="ocfrFirstName" placeholder="First Name" v-model="person.firstName">
-              </div>
-              <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="ocfrLastName" placeholder="Last Name" v-model="person.lastName">
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="form-group col-md-4">
-                <input type="text" class="form-control" id="ocfrPosition" placeholder="Position" v-model="person.position">
-              </div>
-              <div class="col"></div>
-              <div class="form-group col-md-2">
-                <input type="text" class="form-control" id="ocfrSex" placeholder="M|F" v-model="person.gender">
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="form-group col-md-4">
-                <input type="text" class="form-control" id="ocfrAddress" placeholder="Address" v-model="person.address">
-              </div>
-              <div class="col"></div>
-              <div class="form-group col-md-2">
-                <input type="text" class="form-control" id="ocfrWorkPhone" placeholder="Work Phone" v-model="person.workPhone">
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="form-group col-md-4">
-                <input type="text" class="form-control" id="ocfrMobilePhone" placeholder="Mobile Phone" v-model="person.mobilePhone">
-              </div>
-              <div class="col"></div>
-              <div class="form-group col-md-2">
-                <input type="text" class="form-control" id="ocfrRadioNumber" placeholder="Radio Number" v-model="person.radioNumber">
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="form-group col-md-4">
-                <input type="text" class="form-control" id="ocfrStationNumber" placeholder="Station Number" v-model="person.stationNumber">
-              </div>
-              <div class="col"></div>
-              <div class="form-group col-md-2">
-                <input type="text" class="form-control" id="ocfrCert" placeholder="Certification" v-model="person.certId">
+            <div class="form-group row">
+              <label for="inputFirstName" class="col-sm-2 col-form-label">First Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="ocfrFirstName" placeholder="First Name" v-model="recordPerson.firstName">
               </div>
             </div>
 
             <div class="form-group row">
+              <label for="inputLastName" class="col-sm-2 col-form-label">Last Name</label>
               <div class="col-sm-10">
-                <button type="submit" class="btn btn-warning">Submit</button>
+                <input type="text" class="form-control" id="ocfrLastName" placeholder="Last Name" v-model="recordPerson.lastName">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="inputPosition" class="col-sm-2 col-form-label">Position</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="ocfrPosition" placeholder="position" v-model="recordPerson.position">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="inputStation" class="col-sm-2 col-form-label">Station Number</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="ocfrStation" placeholder="Station Number" v-model="recordPerson.station">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="inputGender" class="col-sm-2 col-form-label">Gender</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="ocfrGender" placeholder="Male|Female" v-model="recordPerson.gender">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="inputAddress" class="col-sm-2 col-form-label">Address</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="ocfrAddress" placeholder="Address" v-model="recordPerson.address">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="inputWorkPhone" class="col-sm-2 col-form-label">Work Phone</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="ocfrWorkPhone" placeholder="Work Phone" v-model="recordPerson.workPhone">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="inputMobilePhone" class="col-sm-2 col-form-label">Mobile Phone</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="ocfrMobilePhone" placeholder="Mobile Phone" v-model="recordPerson.mobilePhone">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="inputRadioNumber" class="col-sm-2 col-form-label">Radio Number</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="ocfrRadioNumber" placeholder="Radio Number" v-model="recordPerson.radioNumber">
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Create Employee Record</button>
               </div>
             </div>
           </form>
-        </div>
 
+
+
+        </div>
+      </div>
+    </div>
+  </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="js/ocfrApp.js"></script>
   </body>
 
-  <footer></footer>
 </html>

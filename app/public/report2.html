@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Station and Radio Number</title>
+
+    <!-- Bootstrap -->
+    <!--Compiled and minified CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!--jQuery CDN-->
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+    <!--Compiled and minified JavaScript-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+
+  <body>
+    <header>
+      <h1><img src="Firelogo.png" alt="firelogo" height="70px">Oconee County Fire Rescue<img src="Firelogo.png" alt="firelogo" height="70px"></h1>
+    </header>
+    <nav class="navbar navbar-expand-lg"> <!--taken from bootstrap-->
+      <ul class="nav navbar-nav goldbg">
+              <li><a class="black" href="index.html">Home</a></li>
+              <li><a class="black" href="certificate.html">Certificate</a></li>
+              <li><a class="black" href="reports.html">Reports</a></li>
+      </ul>
+    </nav>
+
+    <h2>Member Reports</h2>
+    <div class="container" id="ocfrPersonApp">
+      <div class="row">
+        <div id="mainContent" class="col-md">
+          <div >
+            <div class="filter">
+              <select v-model="filter.station">
+                <option value="">(all)</option>
+                <option>All</option>
+                <option>1</option>
+                <option>8</option>
+              </select>
+            </div>
+            <table id="report2" class="table table-sm table-hover">
+              <thead>
+                <tr>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Station</th>
+                  <th>Radio Number</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="p in persons" @click="handleRowClick(p)" v-if="filter.station=='' || p.station==filter.station">
+                  <td>{{ p.firstName }}</td>
+                  <td>{{ p.lastName }}</td>
+                  <td>{{ p.station }}</td>
+                  <td>{{ p.radioNumber}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/ocfrApp.js"></script>
+    <script src='js/tablesort.min.js'></script>
+    <script>
+      new Tablesort(document.getElementById('report2'));
+    </script>
+    </body>
+
+</html>
